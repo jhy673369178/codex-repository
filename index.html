@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>贪吃蛇 - VueJS</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="app" class="app">
+      <header class="header">
+        <h1>贪吃蛇</h1>
+        <p class="subtitle">使用 Vue.js 制作的经典小游戏</p>
+      </header>
+
+      <section class="panel">
+        <div class="stats">
+          <div class="stat">
+            <span class="label">分数</span>
+            <span class="value">{{ score }}</span>
+          </div>
+          <div class="stat">
+            <span class="label">最高分</span>
+            <span class="value">{{ bestScore }}</span>
+          </div>
+          <div class="stat">
+            <span class="label">速度</span>
+            <span class="value">{{ speedLabel }}</span>
+          </div>
+        </div>
+
+        <canvas
+          ref="board"
+          class="board"
+          :width="boardSize"
+          :height="boardSize"
+          tabindex="0"
+          @keydown="handleKey"
+        ></canvas>
+
+        <div class="controls">
+          <button class="primary" @click="toggleGame">
+            {{ isRunning ? '暂停' : isOver ? '重新开始' : '开始游戏' }}
+          </button>
+          <button class="ghost" @click="resetGame">重置</button>
+          <div class="hint">
+            使用 <strong>方向键</strong> 或 <strong>WASD</strong> 控制蛇的方向。
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <p>提示：保持连续移动，撞墙或撞到自己即失败。</p>
+      </footer>
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
